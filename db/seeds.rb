@@ -1,0 +1,1 @@
+Comment.create( :content => 'hii how r u')
