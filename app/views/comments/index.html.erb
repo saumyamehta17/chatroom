@@ -1,9 +1,11 @@
 <h1>Listing comments</h1>
-
+<% if user_signed_in? %>
+  <div>Signed in user:<%= current_user.email %></div>
+<% end %>
 <table>
   <tr>
     <th>Content</th>
-    
+    <th>Created by</th>
     <th>created at</th>
     <th></th>
     <th></th>
@@ -15,6 +17,7 @@
     
     <td><%= comment.content %></td>
     &nbsp;&nbsp;
+    <td><%= comment.userid %></td>
     <td><%= comment.created_at %></td>
     <td><%= link_to 'Show', comment %></td>
     <td><%= link_to 'Edit', edit_comment_path(comment) %></td>

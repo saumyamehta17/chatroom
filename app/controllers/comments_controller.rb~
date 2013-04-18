@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   # GET /comments
   # GET /comments.json
   def index
-    @comments = Comment.all
+    @comments = Comment.all(:order => 'id DESC')
 
     respond_to do |format|
       format.html # index.html.erb
@@ -41,7 +41,9 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @comment = Comment.new(params[:comment])
-
+    if user.signedin?
+       @comment.userid=current_user.email
+    end
     respond_to do |format|
       if @comment.save
         format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
